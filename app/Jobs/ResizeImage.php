@@ -8,7 +8,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Intervention\Image\ImageManager;
-use Symfony\Component\HttpFoundation\File\File;
 
 class ResizeImage implements ShouldQueue {
 
