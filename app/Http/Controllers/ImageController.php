@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImageRequest;
 use App\Jobs\ResizeImage;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class ImageController extends Controller {
 
@@ -13,7 +12,8 @@ class ImageController extends Controller {
         return view('image.create', ['image' => $image]);
     }
 
-    public function store(Request $request) {
+    public function store(ImageRequest $request) {
+
         $uploadedFile = $request->file('file');
         $file = $uploadedFile->move(public_path('uploads'), $uploadedFile->getClientOriginalName());
         $formats = [150, 500, 1000, 1200, 1400];
