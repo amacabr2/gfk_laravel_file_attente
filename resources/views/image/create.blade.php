@@ -22,10 +22,10 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="well">
-                @if ($image)
+                @if (count($image) != 0)
                     {{ var_dump($image) }}
                 @else
-                    <p><i>Pad d'image</i></p>
+                    <p><i>Pas d'image</i></p>
                 @endif
             </div>
         </div>

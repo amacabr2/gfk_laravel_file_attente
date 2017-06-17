@@ -18,7 +18,7 @@ class ImageController extends Controller {
         $file = $uploadedFile->move(public_path('uploads'), $uploadedFile->getClientOriginalName());
         $formats = [150, 500, 1000, 1200, 1400];
         $job = new ResizeImage($file, $formats);
-        $job->delay(Carbon::now()->addSeconds(10));
+        // $job->delay(Carbon::now()->addSeconds(10));
         $this->dispatch($job);
         return view('image.create');
     }
