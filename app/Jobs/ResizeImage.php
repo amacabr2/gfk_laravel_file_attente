@@ -43,7 +43,6 @@ class ResizeImage implements ShouldQueue {
         $img = $manager->make($this->file);
         foreach ($this->formats as $format) {
             $img->fit($format, $format)
-                ->rotate(45)
                 ->save(public_path('uploads') . "/" . pathinfo($this->file, PATHINFO_FILENAME) . "_{$format}x{$format}.jpg");
         }
     }
