@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class ImageController extends Controller {
 
     public function create() {
-        return view('image.create');
+        $image = $this->searchFile();
+        return view('image.create', ['image' => $image]);
     }
 
     public function store(Request $request) {
@@ -20,6 +21,18 @@ class ImageController extends Controller {
         $job->delay(Carbon::now()->addSeconds(10));
         $this->dispatch($job);
         return view('image.create');
+    }
+
+    private function searchFile() {
+        $list = [];
+        if ($dossier = opendir(public_path('uploads'))) {
+            while(false !== ($fichier = readdir($dossier))) {
+                if ($fichier != '.' and $fichier != '..') {
+                    array_push($list, $fichier);
+                }
+            }
+        }
+        return $list;
     }
 
 }
