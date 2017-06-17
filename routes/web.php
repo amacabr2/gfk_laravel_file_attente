@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'ImageController@create');
+Route::get('/', 'ImageController@create')->name('image.create');
 Route::post('/', 'ImageController@store');
 
 

@@ -4,6 +4,10 @@
 
     <h1>Uploader une image</h1>
 
+    @if(session()->has('message'))
+        <div class="alert alert-danger">{{ session('message') }}</div>
+    @endif
+
     <div class="row">
         <div class="col-lg-8">
             <form action="/" method="post" enctype="multipart/form-data">
@@ -22,11 +26,7 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="well">
-                @if (count($image) != 0)
-                    {{ var_dump($image) }}
-                @else
-                    <p><i>Pas d'image</i></p>
-                @endif
+
             </div>
         </div>
     </div>
