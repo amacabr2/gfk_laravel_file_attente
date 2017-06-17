@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ResizeImage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller {
@@ -15,7 +16,9 @@ class ImageController extends Controller {
         $uploadedFile = $request->file('file');
         $file = $uploadedFile->move(public_path('uploads'), $uploadedFile->getClientOriginalName());
         $formats = [150, 500, 1000, 1200, 1400];
-        $this->dispatch(new ResizeImage($file, $formats));
+        $job = new ResizeImage($file, $formats);
+        $job->delay(Carbon::now()->addSeconds(10));
+        $this->dispatch($job);
         return view('image.create');
     }
 
