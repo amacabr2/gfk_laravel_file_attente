@@ -26,7 +26,13 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="well">
-
+                @if(count($images) != 0)
+                    @foreach($images as $image)
+                        {{ $image->name }}
+                    @endforeach
+                @else
+                    <p><i>Pas d'image</i></p>
+                @endif
             </div>
         </div>
     </div>

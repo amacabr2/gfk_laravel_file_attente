@@ -9,8 +9,8 @@ use App\Jobs\ResizeImage;
 class ImageController extends Controller {
 
     public function create() {
-        $image = $this->searchFile();
-        return view('image.create');
+        $images = Image::all();
+        return view('image.create', ['images'=> $images]);
     }
 
     public function store(ImageRequest $request) {
@@ -27,19 +27,7 @@ class ImageController extends Controller {
                 ->route('image.create')
                 ->with('message', 'Cette image est déjà enregistré');
         }
-        return view('image.create');
-    }
-
-    private function searchFile() {
-        $list = [];
-        if ($dossier = opendir(public_path('uploads'))) {
-            while(false !== ($fichier = readdir($dossier))) {
-                if ($fichier != '.' and $fichier != '..') {
-                    array_push($list, $fichier);
-                }
-            }
-        }
-        return $list;
+        return redirect()->route('image.create');
     }
 
 }
