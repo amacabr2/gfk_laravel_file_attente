@@ -1,4 +1,4 @@
-@yield('base')
+@extends('base')
 
 @section('body')
 
@@ -8,9 +8,9 @@
         {{ csrf_field() }}
         <div class="form-group">
             <label for="file">Fichier image</label>
-            <input type="file" class="form-control" id="file">
+            <input type="file" class="form-control" id="file" name="file">
         </div>
-        <div class="form-control">
+        <div class="form-group">
             <button class="btn btn-primary">Envoyer l'image</button>
         </div>
     </form>
