@@ -39,10 +39,10 @@ class ResizeImage implements ShouldQueue {
      * @return void
      */
     public function handle() {
+        $manager = new ImageManager(['driver' =>  'gd']);
+        $img = $manager->make($this->file);
         foreach ($this->formats as $format) {
-            $manager = new ImageManager(['driver' =>  'gd']);
-            $manager->make($this->file)
-                ->fit($format, $format)
+            $img->fit($format, $format)
                 ->rotate(45)
                 ->save(public_path('uploads') . "/" . pathinfo($this->file, PATHINFO_FILENAME) . "_{$format}x{$format}.jpg");
         }
